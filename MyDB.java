@@ -9,7 +9,7 @@ public class MyDB {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root",
-					"password-1");
+					"root");
 
 			PreparedStatement ps = con.prepareStatement("select * from adminreg where email=? and password=?");
 			ps.setString(1, name);
@@ -29,7 +29,7 @@ public class MyDB {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root",
-					"password-1");
+					"root");
 
 			PreparedStatement ps = con.prepareStatement("select * from customerreg where email=? and password=?");
 			ps.setString(1, name);
@@ -49,7 +49,7 @@ public class MyDB {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root",
-					"password-1");
+					"root");
 
 			PreparedStatement ps = con.prepareStatement("select * from vendorreg where vendorid=? and password=?");
 			ps.setString(1, name);

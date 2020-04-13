@@ -1,5 +1,29 @@
+table{
+	align-content: center;
+}
+
+
+
 html{
     height: 1000px;
+}
+/* select{ */
+/* 	padding: 10px 30px; */
+/* 	font-size:20px; */
+/* 	font-family:cursive;  */
+/* 	border-radius: 10px; */
+/* } */
+
+h2
+{
+	color: red;
+}
+
+#select{
+	padding: 10px 20px;
+	font-size:20px;
+	font-family:cursive; 
+	border-radius: 10px;
 }
 #footer1 {
     position: fixed;
@@ -15,7 +39,7 @@ html{
     font-size: 20px;
 }
 .login {
-    background-color: #6dc77a;
+    background-color: #048730;
     border-radius: 28px;
     -moz-border-radius:28px;
     -webkit-border-radius:28px;
@@ -31,8 +55,8 @@ html{
 
 
 .reg{
-    background-color: blueviolet;
-    border-radius: 28px;
+    background-color:#b01105;
+     border-radius: 28px;
     -moz-border-radius:28px;
     -webkit-border-radius:28px;
     text-decoration: none;
@@ -45,25 +69,26 @@ html{
     box-sizing: border-box;
 }
 .reg1 {
-    color: #ffffff;
+    color: #020000;
     padding: 10px 40px 10px;
     margin-top: 20px;
     display: inline-block;
     font-size: 30px;
     float: right;
-    color: snow;
+    align:center;
+    font-weight: bold;
 }
 #feature-section {
     padding-left:100px;
 }
 body{
-    background-image: url(Background1.jpg);
+    background-image: url(background.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;  
     background-size: cover;
 }
 .feature-content .col-3 img {
-    width:100%;   
+    width:100%;  
 }
 .feature-content .col-3 {
     padding-right: 10%;
@@ -73,11 +98,10 @@ body{
 .col-3 {
     width: 50%;
     float: left;
-}
+   }
 #heading{
-    font-weight: 1200;
-    font-style:italic;
-    color: azure;
+    font-weight: 1200;  
+    color: #000000;
     font-size: 50px;
     text-align: center;
 }
@@ -111,6 +135,21 @@ body{
     align-items: center;
     margin-left: 100px;
 }
+.adminregsubmit1{
+    background-color: #008e24;
+/*     border-radius: 35px; */
+/*     -moz-border-radius:40px; */
+    -webkit-border-radius:15px;
+    color: #ffffff;
+    padding: 3px 20px;
+    margin-left:500px ;	
+    
+/*    display: inline-block;*/
+    font-size: 17px;
+	float: right;
+    box-sizing: border-box;
+   /*margin-right: 100px;*/
+}
 label{
     font-size: 20px;
     padding-bottom: 20px;
@@ -119,11 +158,14 @@ label{
     display: inline-block;
     margin-left: 100px;
 }
-input{
+input[type="text"], input[type="email"],input[type="tel"], input[type="password"]{
     padding: 10px 20px;
     border-color: antiquewhite;
     
 }
+/* input[type=time]:disabled{ */
+	
+/* } */
 textarea{
 	padding: 10px 20px;
     border-color: antiquewhite;
@@ -134,7 +176,7 @@ textarea{
     color: darkslategrey;
 }
 #adminreghead{
-    color: darkblue;
+    color: #0c6b8b;
     margin-top: 20px;
 /*    text-align: center;*/
 }

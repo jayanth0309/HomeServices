@@ -4,38 +4,29 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Service</title>
+<title>Vendor Login</title>
 <script type="text/javascript" src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<table>
+<table >
 		<tr>
-			<td><img src="vendor.png" alt="image" width="100" height="100"></td>
+			<td><img src="vendor2.png" alt="image" width="100" height="100"></td>
 			<td id="empty" width="350px"></td>
 			<td><h1 id="heading">Home Service</h1></td>
+			<td>             </td>
+			<td ><form name="myForm" action="VendorLoginServlet" method="post">
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="submit" value="HOME" class="adminregsubmit1"><br>
+			<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" name="submit" value="LOGOUT" class="adminregsubmit1">
+				</form>
+			</td>
 		</tr>
 	</table>
 	<table>
-		<form name="myForm" action="" onsubmit="return vendorvalidateForm1()"
-			method="post" required="required">
-			<div>
-				<input type="submit" class="adminregsubmit"
-					value="Add Personal Details" name="submit"
-					onclick="return details()"> <input type="submit"
-					class="adminregsubmit" value="Edit your Details" name="submit"
-					onclick="return details1()"><br>
-			</div>
-			<table>
-				<tr id="result" style="display:none;">
-					<td><br><b>Email:</b> &emsp;&emsp;&emsp;<input type="email"
-					placeholder="Enter Email" size="30" id="emailid1" name="email1">&emsp;&emsp;&emsp;
-				<b>Address:</b>&emsp;&emsp;&emsp;<textarea id="address" name="address" rows="3" cols="30" placeholder="Enter your address"></textarea>&emsp;&emsp;&emsp;
-				<input type="submit" class="adminregsubmit" value="Add Details" name="submit"></td>
-				</tr>
-			</table>
-			<br>
-			<br>
+		<form name="myForm" action="VendorLoginServlet"
+			onsubmit="vendorafterlogin.jsp" method="post" required="required">
+			<input type="submit" name="submit" value="Notifications"
+				class="adminregsubmit">
 			<table>
 				<tr>
 					<%@page import="java.sql.DriverManager"%>
@@ -64,17 +55,18 @@
 							<td><b>AGE</b></td>
 							<td><b>GENDER</b></td>
 							<td><b>CONTACT</b></td>
-							<td><b>VENDORID</b></td>				
+							<td><b>VENDORID</b></td>
 						</tr>
 
 
 						<%
 							try {
-								conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root", "password-1");
+								conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root", "root");
 								PreparedStatement ps = conn.prepareStatement("select * from Vendorreg where vendorid=? ");
-								ps.setString(1,request.getParameter("loginname1"));
+								String vid = (String) request.getAttribute("vid");
+								ps.setString(1, vid);
 								rs = ps.executeQuery();
-								
+
 								while (rs.next()) {
 						%>
 						<tr bgcolor="#DEB887">
@@ -84,7 +76,7 @@
 							<td><%=rs.getString(4)%></td>
 							<td><%=rs.getString(5)%></td>
 							<td><%=rs.getString(6)%></td>
-<%-- 							<td><%=rs.getString(7)%></td> --%>
+							<%-- 							<td><%=rs.getString(7)%></td> --%>
 							<%-- 	<td><%=rs.getString(8) %></td> --%>
 						</tr>
 
@@ -95,12 +87,144 @@
 								e.printStackTrace();
 							}
 						%>
-<!-- 					</table> -->
-				</tr>
+					</table>
+
+
+
+
+
+
+
+
+
+
+
+					<table align="center" cellpadding="5" cellspacing="5" border="1">
+						<tr>
+
+						</tr>
+						<tr bgcolor="#A52A2A">
+							<td><b>VENDORID</b></td>
+							<td><b>PHONE NUMBER</b></td>
+							<td><b>AVALIBLE TIME</b></td>
+							<td><b>LOACTION</b></td>
+							<td><b>SERVICE TYPE</b></td>
+							<td><b>CATEGORY</b></td>
+							<td><b>STATUS</b></td>
+						</tr>
+
+
+						<%
+							try {
+								conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HomeService1", "root", "root");
+								PreparedStatement ps = conn.prepareStatement("select distinct categories,vendorid,telnum,avltimefrom,avltimeto,location,servicetype,status from Vendorservice where vendorid=?");
+								// 								String vid =request.getAttribute("vid");
+								// 								login l = (login)request.getAttribute("vid");
+								String vid = (String) request.getAttribute("vid");
+								// 								ps.setString(1, request.getParameter("loginname1"));
+								ps.setString(1, vid);
+								rs = ps.executeQuery();
+
+								while (rs.next()) {
+						%>
+						<tr bgcolor="#DEB887">
+							<td><%=rs.getString(2)%></td>
+							<td><%=rs.getString(3)%></td>
+							<td><%=rs.getString(4)%>:<%=rs.getString(5)%></td>
+							<td><%=rs.getString(6)%></td>
+							<td><%=rs.getString(7)%></td>
+							<td><%=rs.getString(1)%></td>
+							<td><%=rs.getString(8)%></td>
+
+							<%-- 							<td><%=rs.getString(7)%></td> --%>
+							<%-- 	<td><%=rs.getString(8) %></td> --%>
+						</tr>
+
+						<%
+							}
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						%>
+					</table>
+
+
+
+
+
+
+
+
+
+
+					<p>
+						<br> <br> <b style="color: Red;">If you want to
+							edit your details click here:&emsp;&emsp;&emsp;&emsp;&emsp;</b> <input
+							type="submit" class="adminregsubmit" value="Edit your Details"
+							name="submit">
+					</p>
+					<p>
+						<br> <br> <b>Contact Number:</b>&emsp;&emsp;&emsp;<input
+							type="tel" id="telnum" size="30" name="telnum"
+							placeholder="Enter your phone number" pattern="[789]{1}[0-9]{9}">&emsp;&emsp;&emsp;
+						<b>Avalible Timings:</b>&emsp;&emsp;&emsp; <input type="time"
+							value="00:00" id="avltime1" name="avltimefrom">
+						&emsp;&emsp;<b>to &emsp;&emsp;</b> <input type="time"
+							value="00:00" id="avltime1" name="avltimeto"><br> <br>
+						<b>Location: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</b><input
+							type="text" size="30" id="location" name="location"
+							placeholder="Enter your loaction">&emsp;&emsp;&emsp; <b>Service
+							Type: </b>&emsp;&emsp;&emsp;&emsp; <select name="servicetype"
+							id="servicetype" style="padding: 10px 20px;"
+							onchange="changecat();">
+							<option value="">Select</option>
+							<option value="Plumbing">Plumbing</option>
+							<option value="Cleaning">Cleaning</option>
+							<option value="Laptop">Laptop</option>
+							<option value="Air Condition">Air Condition</option>
+							<option value="Pest Control">Pest Control</option>
+						</select> &emsp;&emsp;<b>Categories: </b> <select name="category"
+							id="category" style="padding: 10px 20px;">
+							<option value="">Select</option>
+						</select><br>
+						<br> <b>Other Category</b><input type="text"
+							placeholder="Other ctegory you want to add" name="category1">
+						<input type="submit" class="adminregsubmit" value="Add Services"
+							name="submit" onclick="return servicevalidate()"
+							onclick="location.reload()"><br>
+						<br>
+					<p>
+						<b style="color: Red;">If you want to add/edit your service
+							details click here:</b> <input type="submit" class="adminregsubmit"
+							value="Edit Services" name="submit">
+					</p>
+					<br>
+					<br>
+					<table>
+
+						<tr id="result"">
+							<td><b>Email:</b> &emsp;&emsp;&emsp;<input type="email"
+								placeholder="Enter Email" size="30" id="emailid1" name="email1">&emsp;&emsp;&emsp;
+							</td>
+							<td><b>Address:</b>&emsp;&emsp;&emsp;<textarea id="address"
+									name="address" rows="3" cols="30"
+									placeholder="Enter your address"></textarea>&emsp;&emsp;&emsp;</td>
+							<br>
+							<br>
+							<td><input type="submit" class="adminregsubmit"
+								value="Add Details" name="submit"></td>
+						</tr>
+					</table>
+
+					<br>
+					<br>
+
+
+
+					<!-- 					</form> -->
 			</table>
 		</form>
-
 	</table>
-
 </body>
 </html>

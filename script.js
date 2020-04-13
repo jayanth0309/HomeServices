@@ -1,3 +1,10 @@
+//
+//   function preventBack(){window.history.forward();}
+//    setTimeout("preventBack()", 0);
+//    window.onunload=function(){null};
+//
+//
+
 function vendorvalidateForm() {
 	var fn = document.forms["myForm"]["fname"].value;
 	if (fn == "" || fn == null) {
@@ -122,7 +129,40 @@ function custadminvalidateForm() {
 		document.getElementById('myInput').style.borderColor = "antiquewhite";
 	}
 }
-
+function servicevalidate(){
+	var telnum = document.forms["myForm"]["telnum"].value;
+	if (telnum == "" || telnum == null) {
+		alert("Please update the highlighted mandatory field(s)");
+		document.getElementById('telnum').style.borderColor = "red";
+		return false;
+	} else {
+		document.getElementById('telnum').style.borderColor = "antiquewhite";
+	}
+	var avltime = document.forms["myForm"]["avltime"].value;
+	if (avltime == "" || avltime == null) {
+		alert("Please update the highlighted mandatory field(s)");
+		document.getElementById('avltime').style.borderColor = "red";
+		return false;
+	} else {
+		document.getElementById('avltime').style.borderColor = "antiquewhite";
+	}
+	var loc = document.forms["myForm"]["location"].value;
+	if (loc == "" || loc == null) {
+		alert("Please update the highlighted mandatory field(s)");
+		document.getElementById('location').style.borderColor = "red";
+		return false;
+	} else {
+		document.getElementById('location').style.borderColor = "antiquewhite";
+	}
+	var st = document.forms["myForm"]["servicetype"].value;
+	if (st == "" || st == null) {
+		alert("Please update the highlighted mandatory field(s)");
+		document.getElementById('servicetype').style.borderColor = "red";
+		return false;
+	} else {
+		document.getElementById('servicetype').style.borderColor = "antiquewhite";
+	}
+}
 function Validate() {
 	var password = document.getElementById("myInput").value;
 	var confirmPassword = document.getElementById("cnfpass").value;
@@ -130,11 +170,18 @@ function Validate() {
 		alert("Passwords do not match.");
 		return false;
 	}
-	// var sub = document.getElementById("submit").value;
-	// if(sub=="Register"){
-	// alert("your detailes are succussfully submitted!");
-	// return true;
-	// }
+		
+}
+function Validate1() {
+	var password = document.getElementById("newInput").value;
+	var confirmPassword = document.getElementById("cnfnewpass").value;
+	var oldpass = document.getElementById("oldInput").value;
+	if (password != confirmPassword) {
+		alert("Passwords do not match.");
+		return false;
+	}else if(password == oldpass){
+		alert("old and new password should be different");
+	}
 	return true;
 }
 function myFunction() {
@@ -155,16 +202,33 @@ function myFunction1() {
 		x.type = "password"
 	}
 }
-// function confirm1() {
-// var txt;
-// if (confirm("your detailes are succussfully submitted!if you want reg another
-// click ok! or click cancel to go to home page")) {
-// txt = "You pressed OK!";
-// } else {
-// txt = "You pressed Cancel!";
-// }
-// return false;
-// }
+function myFunction2() {
+	var x = document.getElementById("oldInput");
+
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password"
+	}
+}
+function myFunction3() {
+	var x = document.getElementById("newInput");
+
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password"
+	}
+}
+function myFunction4() {
+	var x = document.getElementById("cnfnewpass");
+
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password"
+	}
+}
 
 function loginvalidateForm() {
 	var fn = document.forms["myForm"]["loginname1"].value;
@@ -197,3 +261,296 @@ function details1() {
 	// document.getElementById("result").innerHTML="";
 	return false;
 }
+
+function changecat() {
+    var selectHTML = "";
+    var selectHTML1 = "";
+
+    var A = ["","General Repair", "Taps Repair", "Flush Tank Repair"];
+    var B = ["","Carpet cleaning", "Washroom Cleaning", "Sofa Cleaning", "Kitchen Cleaning"];
+    var C = ["","Display Issues", "Power Problems", "Battery Issues", "HardDrive Issues", "Keyboard Issues"];
+    var D = ["","Full Service","AC Repair","AC Gas Changing","AC Installation","AC Installation"];
+    var E = ["","General Pest Control","Cockroach Control","Bed Bug Control","Teermite Control"];
+    //var A1 = ["1000"];
+    //var B1 = ["2000"];
+    //var C1 = ["3000"];
+    //var D1 = ["4000"];
+    //var E1 = ["5000"];
+    if (document.getElementById("servicetype").value == "Plumbing") {
+        var select = document.getElementById('category').options.length;
+        for (var i = 0; i < select; i++) {
+        	document.getElementById("category").options.length=0;
+        }
+        for (var i = 0; i < A.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + A[i] + "'>" + A[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category').add(newSelect);
+        }
+        document.getElementById("payment").options.length=0;
+        var newSelect1 = document.createElement('option');
+        selectHTML1 = "<option value='" + A1 + "'>" + A1 + "</option>";
+        newSelect1.innerHTML = selectHTML1;
+        document.getElementById('payment').add(newSelect1);
+    }
+
+    else if (document.getElementById("servicetype").value == "Cleaning") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category").options.length=0;
+        }
+
+        for (var i = 0; i < B.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + B[i] + "'>" + B[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category').add(newSelect);
+        }
+        document.getElementById("payment").options.length=0;
+        var newSelect1 = document.createElement('option');
+        selectHTML1 = "<option value='" + B1 + "'>" + B1 + "</option>";
+        newSelect1.innerHTML = selectHTML1;
+        document.getElementById('payment').add(newSelect1);
+    }
+
+    else if (document.getElementById("servicetype").value == "Laptop") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category").options.length=0;
+        }
+
+        for (var i = 0; i < C.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + C[i] + "'>" + C[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category').add(newSelect);
+        }
+        document.getElementById("payment").options.length=0;
+        var newSelect1 = document.createElement('option');
+        selectHTML1 = "<option value='" + C1 + "'>" + C1 + "</option>";
+        newSelect1.innerHTML = selectHTML1;
+        document.getElementById('payment').add(newSelect1);
+    }
+    else if (document.getElementById("servicetype").value == "Air Condition") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category").options.length=0;
+        }
+
+        for (var i = 0; i < D.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + D[i] + "'>" + D[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category').add(newSelect);
+        }
+        document.getElementById("payment").options.length=0;
+        var newSelect1 = document.createElement('option');
+        selectHTML1 = "<option value='" + D1 + "'>" + D1 + "</option>";
+        newSelect1.innerHTML = selectHTML1;
+        document.getElementById('payment').add(newSelect1);
+    }
+    else if (document.getElementById("servicetype").value == "Pest Control") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category").options.length=0;
+        }
+
+        for (var i = 0; i < E.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + E[i] + "'>" + E[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category').add(newSelect);
+        }
+        document.getElementById("payment").options.length=0;
+        var newSelect1 = document.createElement('option');
+        selectHTML1 = "<option value='" + E1 + "'>" + E1 + "</option>";
+        newSelect1.innerHTML = selectHTML1;
+        document.getElementById('payment').add(newSelect1);
+    }
+}
+function changecat1() {
+    var selectHTML = "";
+
+    var A = ["","General Repair", "Taps Repair", "Flush Tank Repair"];
+    var B = ["","Carpet cleaning", "Washroom Cleaning", "Sofa Cleaning", "Kitchen Cleaning"];
+    var C = ["","Display Issues", "Power Problems", "Battery Issues", "HardDrive Issues", "Keyboard Issues"];
+    var D = ["","Full Service","AC Repair","AC Gas Changing","AC Installation","AC Installation"];
+    var E = ["","General Pest Control","Cockroach Control","Bed Bug Control","Teermite Control"];
+
+    if (document.getElementById("servicetype1").value == "Plumbing") {
+        var select = document.getElementById('category1').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category1").options.length=0;
+        	
+        }
+
+        for (var i = 0; i < A.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + A[i] + "'>" + A[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category1').add(newSelect);
+        }
+    }
+
+    else if (document.getElementById("servicetype1").value == "Cleaning") {
+        var select = document.getElementById('category1').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category1").options.length=0;
+        }
+
+        for (var i = 0; i < B.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + B[i] + "'>" + B[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category1').add(newSelect);
+        }
+    }
+
+    else if (document.getElementById("servicetype1").value == "Laptop") {
+        var select = document.getElementById('category1').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category1").options.length=0;
+        }
+
+        for (var i = 0; i < C.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + C[i] + "'>" + C[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category1').add(newSelect);
+        }
+    }
+    else if (document.getElementById("servicetype1").value == "Air Condition") {
+        var select = document.getElementById('category1').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category1").options.length=0;
+        }
+
+        for (var i = 0; i < D.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + D[i] + "'>" + D[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category1').add(newSelect);
+        }
+    }
+    else if (document.getElementById("servicetype1").value == "Pest Control") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category1").options.length=0;
+        }
+
+        for (var i = 0; i < E.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + E[i] + "'>" + E[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category1').add(newSelect);
+        }
+    }
+}
+function changecat2() {
+    var selectHTML = "";
+
+    var A = ["","General Repair", "Taps Repair", "Flush Tank Repair"];
+    var B = ["","Carpet cleaning", "Washroom Cleaning", "Sofa Cleaning", "Kitchen Cleaning"];
+    var C = ["","Display Issues", "Power Problems", "Battery Issues", "HardDrive Issues", "Keyboard Issues"];
+    var D = ["","Full Service","AC Repair","AC Gas Changing","AC Installation","AC Installation"];
+    var E = ["","General Pest Control","Cockroach Control","Bed Bug Control","Teermite Control"];
+
+    if (document.getElementById("servicetype2").value == "Plumbing") {
+        var select = document.getElementById('category').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category2").options.length=0;
+        	
+        }
+
+        for (var i = 0; i < A.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + A[i] + "'>" + A[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category2').add(newSelect);
+        }
+    }
+
+    else if (document.getElementById("servicetype2").value == "Cleaning") {
+        var select = document.getElementById('category2').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category2").options.length=0;
+        }
+
+        for (var i = 0; i < B.length; i++) {
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + B[i] + "'>" + B[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category2').add(newSelect);
+        }
+    }
+
+    else if (document.getElementById("servicetype2").value == "Laptop") {
+        var select = document.getElementById('category2').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category2").options.length=0;
+        }
+
+        for (var i = 0; i < C.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + C[i] + "'>" + C[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category2').add(newSelect);
+        }
+    }
+    else if (document.getElementById("servicetype2").value == "Air Condition") {
+        var select = document.getElementById('category2').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category2").options.length=0;
+        }
+
+        for (var i = 0; i < D.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + D[i] + "'>" + D[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category2').add(newSelect);
+        }
+    }
+    else if (document.getElementById("servicetype2").value == "Pest Control") {
+        var select = document.getElementById('category2').options.length;
+
+        for (var i = 0; i < select; i++) {
+//            document.getElementById('category').options.remove(i);
+        	document.getElementById("category2").options.length=0;
+        }
+
+        for (var i = 0; i < E.length; i++) { 
+            var newSelect = document.createElement('option');
+            selectHTML = "<option value='" + E[i] + "'>" + E[i] + "</option>";
+            newSelect.innerHTML = selectHTML;
+            document.getElementById('category2').add(newSelect);
+        }
+    }
+}
+
+
